@@ -107,17 +107,30 @@ public class GameOfLife {
 	// Uses the cellValue(board,i,j) function to compute the value of each 
 	// cell in the new board. Returns the new board.
 	public static int[][] evolve(int[][] board) {
-		int rows = board.length - 2;
-        int cols = board[0].length - 2;
-        int[][] newBoard = new int[rows + 2][cols + 2];
+		int rows = board.length;
+    int cols = board[0].length;
+    int[][] newBoard = new int[rows][cols];
 
-        for (int i = 1; i <= rows; i++) {
-            for (int j = 1; j <= cols; j++) {
-                newBoard[i][j] = cellValue(board, i, j);
+    for (int i = 1; i < rows - 1; i++) {
+        for (int j = 1; j < cols - 1; j++) {
+            int neighbors = count(board, i, j);
+            if (board[i][j] == 1) {
+                if (neighbors < 2 || neighbors > 3) {
+                    newBoard[i][j] = 0; // Cell dies
+                } else {
+                    newBoard[i][j] = 1; // Cell survives
+                }
+            } else {
+                if (neighbors == 3) {
+                    newBoard[i][j] = 1; // Cell becomes alive
+                } else {
+                    newBoard[i][j] = 0; // Cell remains dead
+                }
             }
         }
-        return newBoard;
     }
+    return newBoard;
+}
 
 
 	// Returns the value that cell (i,j) should have in the next generation.
