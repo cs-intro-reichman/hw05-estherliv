@@ -109,27 +109,29 @@ public class GameOfLife {
 	public static int[][] evolve(int[][] board) {
 		int rows = board.length;
     int cols = board[0].length;
+
     int[][] newBoard = new int[rows][cols];
 
     for (int i = 1; i < rows - 1; i++) {
         for (int j = 1; j < cols - 1; j++) {
             int neighbors = count(board, i, j);
 
-            if (board[i][j] == 1) {
-                if (neighbors < 2 || neighbors > 3) {
-                    newBoard[i][j] = 0; // Cell dies
-                } else {
-                    newBoard[i][j] = 1; // Cell survives
+            if (board[i][j] == 1) {// Cell is alive
+                if (neighbors < 2 || neighbors > 3) {// cell dies    
+                    newBoard[i][j] = 0;
+                } else {// Cell survives
+                    newBoard[i][j] = 1;
                 }
-            } else {
-                if (neighbors == 3) {
-                    newBoard[i][j] = 1; // Cell becomes alive
-                } else {
-                    newBoard[i][j] = 0; // Cell remains dead
+            } else {// Cell is dead
+                if (neighbors == 3) {// Cell becomes alive due to reproduction
+                    newBoard[i][j] = 1;
+                } else {// Cell remains dead
+                    newBoard[i][j] = 0;
                 }
             }
         }
     }
+
     return newBoard;
 }
 
