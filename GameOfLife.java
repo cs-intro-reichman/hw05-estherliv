@@ -81,25 +81,27 @@ public class GameOfLife {
 	// This function assumes that the input file contains valid data, and does no input testing.
 	public static int[][] read(String fileName) {
 		In in = new In(fileName);
-        int rows = in.readInt();
-        int cols = in.readInt();
-        int[][] board = new int[rows + 2][cols + 2];
-        in.readLine(); 
+    int rows = in.readInt();
+    int cols = in.readInt();
+    int[][] board = new int[rows + 2][cols + 2];
 
-        for (int i = 1; i <= rows; i++) {
-            String line = in.readLine();
-            if (!line.isEmpty()) {
-                for (int j = 1; j <= cols; j++) {
-                    if (line.charAt(j - 1) == 'x') {
-                        board[i][j] = 1;
-                    } else {
-                        board[i][j] = 0;
-                    }
+    in.readLine(); // Move to the next line
+
+    for (int i = 1; i <= rows; i++) {
+        String line = in.readLine();
+        if (line != null && !line.isEmpty()) {
+            for (int j = 1; j <= cols && j <= line.length(); j++) {
+                if (line.charAt(j - 1) == 'x') {
+                    board[i][j] = 1;
+                } else {
+                    board[i][j] = 0;
                 }
             }
         }
-        return board;
     }
+
+    return board;
+}
 	
 	// Creates a new board from the given board, using the rules of the game.
 	// Uses the cellValue(board,i,j) function to compute the value of each 
