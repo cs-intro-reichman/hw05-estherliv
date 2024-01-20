@@ -80,16 +80,14 @@ public class GameOfLife {
 	// of this frame as representing the infinite number of dead cells that exist in every direction.
 	// This function assumes that the input file contains valid data, and does no input testing.
 	public static int[][] read(String fileName) {
-		Scanner scanner = new Scanner(new File(fileName));
-
-        int rows = scanner.nextInt();
-        int cols = scanner.nextInt();
+		In in = new In(fileName);
+        int rows = in.readInt();
+        int cols = in.readInt();
         int[][] board = new int[rows + 2][cols + 2];
-
-        scanner.nextLine(); 
+        in.readLine(); 
 
         for (int i = 1; i <= rows; i++) {
-            String line = scanner.nextLine();
+            String line = in.readLine();
             if (!line.isEmpty()) {
                 for (int j = 1; j <= cols; j++) {
                     if (line.charAt(j - 1) == 'x') {
@@ -100,8 +98,6 @@ public class GameOfLife {
                 }
             }
         }
-
-        scanner.close();
         return board;
     }
 	
