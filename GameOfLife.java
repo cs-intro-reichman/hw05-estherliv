@@ -189,16 +189,13 @@ private static int countNeighbors(int[][] board, int row, int col) {
 	
 	// Prints the board. Alive and dead cells are printed as 1 and 0, respectively.
     public static void print(int[][] arr) {
-        int rows = board.length;
-    	int cols = board[0].length;
-
-    	for (int i = 0; i < rows; i++) {
-        	for (int j = 0; j < cols; j++) {
-         		System.out.printf("%3d", board[i][j]);
-        	}
-        	System.out.println();  // Add a space between lines
-    	}
-	}
+        for (int i = 1; i < arr.length - 1; i++) {
+            for (int j = 1; j < arr[0].length - 1; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
 		
     // Displays the board. Living and dead cells are represented by black and white squares, respectively.
     // We use a fixed-size canvas of 900 pixels by 900 pixels for displaying game boards of different sizes.
