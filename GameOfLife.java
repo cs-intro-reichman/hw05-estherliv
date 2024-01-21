@@ -189,8 +189,8 @@ private static int countNeighbors(int[][] board, int row, int col) {
 	
 	// Prints the board. Alive and dead cells are printed as 1 and 0, respectively.
     public static void print(int[][] arr) {
-        for (int i = 1; i < arr.length; i++) {
-			for (int j = 1; j < arr[0].length; j++) {
+        for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[0].length; j++) {
 				System.out.printf("%3d", arr[i][j]);  
 			}
 			System.out.println();
