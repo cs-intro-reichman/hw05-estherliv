@@ -81,11 +81,10 @@ public class GameOfLife {
 	// This function assumes that the input file contains valid data, and does no input testing.
 	public static int[][] read(String fileName) {
 		In in = new In(fileName);
-    int rows = in.readInt();
-    int cols = in.readInt();
-    int[][] board = new int[rows + 2][cols + 2];
-
-    in.readLine(); // Move to the next line
+    	int rows = in.readInt();
+    	int cols = in.readInt();
+    	int[][] board = new int[rows + 2][cols + 2];
+    	in.readLine(); 
 
     for (int i = 1; i <= rows; i++) {
         String line = in.readLine();
@@ -99,9 +98,8 @@ public class GameOfLife {
             }
         }
     }
-
     return board;
-}
+	}
 	
 	// Creates a new board from the given board, using the rules of the game.
 	// Uses the cellValue(board,i,j) function to compute the value of each 
@@ -111,36 +109,36 @@ public class GameOfLife {
     	int cols = board[0].length;
     	int[][] newBoard = new int[rows][cols];
 
-  	  for (int i = 0; i < rows; i++) {
-        	for (int j = 0; j < cols; j++) {
-            	int neighbors = countNeighbors(board, i, j);
+    	for (int i = 0; i < rows; i++) {
+     	for (int j = 0; j < cols; j++) {
+            int neighbors = countNeighbors(board, i, j);
             	if (board[i][j] == 1) {
-                	newBoard[i][j] = (neighbors < 2 || neighbors > 3) ? 0 : 1;
+                newBoard[i][j] = (neighbors < 2 || neighbors > 3) ? 0 : 1;
             	} else {
-                	newBoard[i][j] = (neighbors == 3) ? 1 : 0;
+                newBoard[i][j] = (neighbors == 3) ? 1 : 0;
             	}
-       	 }
+        	}
     	}
     	return newBoard;
 	}
 
-private static int countNeighbors(int[][] board, int row, int col) {
-    int count = 0;
-    int rows = board.length;
-    int cols = board[0].length;
+	public static int countNeighbors(int[][] board, int row, int col) {
+    	int count = 0;
+    	int rows = board.length;
+    	int cols = board[0].length;
 
-    for (int i = -1; i <= 1; i++) {
-        for (int j = -1; j <= 1; j++) {
-            int newRow = row + i;
-            int newCol = col + j;
-            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && !(i == 0 && j == 0)) {
-                count += board[newRow][newCol];
-            }
-        }
-    }
+		for (int i = -1; i <= 1; i++) {
+			for (int j = -1; j <= 1; j++) {
+				int newRow = row + i;
+				int newCol = col + j;
+				if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && !(i == 0 && j == 0)) {
+					count += board[newRow][newCol];
+				}
+			}
+		}
 
-    return count;
-}
+		return count;
+	}
 
 
 	// Returns the value that cell (i,j) should have in the next generation.
