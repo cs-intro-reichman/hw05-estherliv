@@ -152,7 +152,7 @@ public class GameOfLife {
 				}
 			}
 		}
-		return count;
+		return counter;
 	}
 	
 	// Prints the board. Alive and dead cells are printed as 1 and 0, respectively.
